@@ -1,1 +1,5 @@
 *.gch
+*.o
+*.x
+lib/
+bin/

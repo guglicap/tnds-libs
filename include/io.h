@@ -1,4 +1,4 @@
-#ifndef ESERCIZIO3_1_IO_H
+#pragma once
 
 #include <iostream>
 #include <vector>
@@ -6,7 +6,7 @@
 
 namespace io {
     template<typename T>
-    std::vector <T> Read(std::istream &in) {
+    std::vector <T> Read(const std::istream &in) {
         std::vector <T> data;
         while (true) {
             T v;
@@ -18,7 +18,7 @@ namespace io {
     }
 
     template<typename T>
-    std::vector <T> Read(std::istream &in, unsigned int N) {
+    std::vector <T> Read(const std::istream &in, unsigned const int N) {
         std::vector <T> data;
         for (int i = 0; i < N; i++) {
             T v;
@@ -45,28 +45,28 @@ namespace io {
     }
 
     template<typename T>
-    std::vector <T> ReadFile(const char *filename, unsigned int N) {
-        std::ifstream ifile(filename);
+    std::vector <T> ReadFile(const char *filename, unsigned const int N) {
+        const std::ifstream ifile(filename);
 
         if (!ifile) {
             std::cerr << "file '" << filename << "' not found." << std::endl;
             exit(-2);
         }
 
-        std::vector <T> data = Read<T>(ifile, N);
+        const std::vector <T> data = Read<T>(ifile, N);
 
         ifile.close();
         return data;
     }
 
-    template <typename T> void Print(std::vector<T> data, std::ostream& out = &std::cout) {
-        for (auto v: data) {
+    template <typename T> void Print(const std::vector<T> data, const std::ostream& out = std::cout) {
+        for (const auto v: data) {
             out << v << std::endl;
         }
     }
 
-    template <typename T> void PrintFile(std::vector<T> data, const char* filename) {
-        std::ofstream ofile(filename);
+    template <typename T> void PrintFile(const std::vector<T> data, const char* filename) {
+        const std::ofstream ofile{filename};
         if (!ofile) {
             std::cerr << "couldn't open file '" << filename << "'" << std::endl;
             exit(-3);
@@ -74,6 +74,3 @@ namespace io {
         Print(data, ofile);
     }
 }
-#define ESERCIZIO3_1_IO_H
-
-#endif //ESERCIZIO3_1_IO_H
