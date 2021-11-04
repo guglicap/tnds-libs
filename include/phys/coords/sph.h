@@ -32,7 +32,7 @@ namespace phys {
         }
 
         std::ostream &operator<<(std::ostream &os, const sph &v) {
-            os << "(" << v.r << ", " << v.theta << ", " << v.phi << ")";
+            os << "(" << v.r << ", " << v.theta << " rad, " << v.phi << " rad)";
             return os;
         };
 
