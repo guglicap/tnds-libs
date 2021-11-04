@@ -2,7 +2,6 @@
 
 #include <iostream>
 #include "phys/vector.h"
-#include "phys/vectorField.h"
 #include "phys/em/constant.h"
 
 namespace phys {
@@ -20,13 +19,6 @@ namespace phys {
         constexpr auto r() const { return m_r; }
 
         constexpr auto q() const { return m_q; }
-
-        auto electric_field() const {
-            return vectorField{[*this](const vector pos) -> vector {
-                const auto r = pos - m_r;
-                return r.normalize() * m_q / (4 * M_PI * phys::em::epsilon0) / pow(r.len(), 2);
-            }};
-        }
 
     protected:
         const double m_m = 0.0;
