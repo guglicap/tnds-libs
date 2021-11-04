@@ -6,7 +6,7 @@
 
 namespace io {
     template<typename T>
-    std::vector<T> Read(const std::istream &in) {
+    std::vector<T> read(const std::istream &in) {
         std::vector<T> data;
         while (true) {
             T v;
@@ -18,7 +18,7 @@ namespace io {
     }
 
     template<typename T>
-    std::vector<T> Read(const std::istream &in, unsigned const int N) {
+    std::vector<T> read(const std::istream &in, unsigned const int N) {
         std::vector<T> data;
         for (int i = 0; i < N; i++) {
             T v;
@@ -30,7 +30,7 @@ namespace io {
     }
 
     template<typename T>
-    std::vector<T> ReadFile(const char *filename) {
+    std::vector<T> readFile(const char *filename) {
         std::ifstream ifile(filename);
 
         if (!ifile) {
@@ -45,7 +45,7 @@ namespace io {
     }
 
     template<typename T>
-    std::vector<T> ReadFile(const char *filename, unsigned const int N) {
+    std::vector<T> readFile(const char *filename, unsigned const int N) {
         const std::ifstream ifile(filename);
 
         if (!ifile) {
@@ -60,19 +60,20 @@ namespace io {
     }
 
     template<typename T>
-    void Print(const std::vector<T> data, const std::ostream &out = std::cout) {
+    void write(const std::vector<T> data, const std::ostream &out = std::cout) {
         for (const auto v: data) {
             out << v << std::endl;
         }
     }
 
     template<typename T>
-    void PrintFile(const std::vector<T> data, const char *filename) {
+    void writeFile(const std::vector<T> data, const char *filename) {
         const std::ofstream ofile{filename};
         if (!ofile) {
             std::cerr << "couldn't open file '" << filename << "'" << std::endl;
             exit(-3);
         }
         Print(data, ofile);
+        ofile.close(); // closing since calling this function again would truncate an already existing file anyway
     }
 }
