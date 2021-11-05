@@ -3,6 +3,7 @@
 #include "phys/vectorField.h"
 #include "phys/vector.h"
 #include "phys/em/constant.h"
+#include "phys/particle.h"
 
 namespace phys::
 inline em {

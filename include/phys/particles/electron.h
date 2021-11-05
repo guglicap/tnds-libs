@@ -5,13 +5,13 @@
 
 namespace phys {
     inline namespace particles {
-        class electron : public particle {
-        public:
-            constexpr electron() : particle(9.10938e-31, -1.60217e-19) {};
+        struct electron : public particle {
+            constexpr electron() : particle{9.10938e-31, -e} {};
+            constexpr electron(const vector r) : particle{9.10938e-31, -e, r} {};
         };
 
         std::ostream &operator<<(std::ostream &os, const electron p) {
-            os << "Electron: " << static_cast<particle>(p);
+            os << "Electron: " << particle(p);
             return os;
         }
     }
