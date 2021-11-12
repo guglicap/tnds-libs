@@ -31,11 +31,15 @@ namespace math {
                 auto xMid = 0.5 * (xMax + xMin);
                 while (rangeOk(dx, xMid)) {
                     if (iter > maxIters) {
-                        std::cout << "reached max iterations, precision might be smaller than required" << std::endl;
+                        std::cout << "warning: reached max iterations, precision might be smaller than required"
+                                  << std::endl;
                         break;
                     }
                     const auto yLow = f(xMin);
                     const auto yHigh = f(xMax);
+                    if (yLow == 0.0 || yHigh == 0.0) {
+                        return pair{yLow == 0.0 ? xMin : xMax, 0};
+                    }
                     if (yLow * yHigh > 0) {
                         std::cout << "invalid range! function has the same sign in range [" << xMin << ", " << xMax
                                   << "]" << std::endl;
@@ -49,6 +53,7 @@ namespace math {
                     }
                     dx = xMax - xMin;
                     xMid = 0.5 * (xMax + xMin);
+                    iter++;
                 }
                 return pair{xMid, dx / 2};
             }
@@ -58,11 +63,15 @@ namespace math {
             const double prec = 1e-9;
             const int maxIters = 100;
 
-            constexpr bool rangeOk(double deltaX, double midX) const {
-                if (0.5*deltaX < prec) return false;
-                if (0.5*deltaX < maxDoublePrec(midX)) {
-                    std::cout << "warning: required precision " << prec << " is greater than maximum double precision"
-                              << std::endl;
+            bool rangeOk(double deltaX, double midX) const {
+                if (0.5 * deltaX < prec) return false;
+                const auto dPrec = maxDoublePrec(midX);
+                if (0.5 * deltaX < dPrec) {
+                    if (prec != 0) {
+                        std::cout << "warning: required precision " << prec
+                                  << " is greater than maximum double precision: "
+                                  << dPrec << std::endl;
+                    }
                     return false;
                 }
                 return true;
