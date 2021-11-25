@@ -11,13 +11,13 @@ using std::pair;
 namespace math {
     inline namespace zeros {
         template<typename Func>
-        class Bisector : public ZeroFinder {
+        class Bisection : public ZeroFinder {
         public:
-            Bisector(const Func f) : ZeroFinder(), f(f) {};
+            Bisection(const Func f) : ZeroFinder(), f(f) {};
 
-            Bisector(const Func f, double precision) : ZeroFinder(), f(f), prec(precision) {};
+            Bisection(const Func f, double precision) : ZeroFinder(), f(f), prec(precision) {};
 
-            Bisector(const Func f, double precision, int maxIterations)
+            Bisection(const Func f, double precision, int maxIterations)
                     : ZeroFinder(), f(f), prec(precision), maxIters(maxIterations) {};
 
             optional<pair<double, double>> FindZero(double xMin, double xMax) const override {
@@ -40,7 +40,7 @@ namespace math {
                     if (yLow == 0.0 || yHigh == 0.0) {
                         return pair{yLow == 0.0 ? xMin : xMax, 0};
                     }
-                    if (yLow * yHigh > 0) {
+                    if (yLow * yHigh > 0) { // TODO: use sign function
                         std::cout << "invalid range! function has the same sign in range [" << xMin << ", " << xMax
                                   << "]" << std::endl;
                         return std::nullopt;
