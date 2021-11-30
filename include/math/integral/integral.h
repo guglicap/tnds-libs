@@ -2,9 +2,9 @@
 
 namespace math {
     inline namespace integral {
-        class Integral {
+        class Integrator {
         public:
-            Integral() = default;
+            Integrator() = default;
 
             virtual double Integrate(double a, double b) const = 0;
         };

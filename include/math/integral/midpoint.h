@@ -6,11 +6,11 @@
 namespace math {
     inline namespace integral {
         template<typename Func>
-        class Midpoint : public Integral {
+        class Midpoint : public Integrator {
         public:
-            Midpoint(Func f) : Integral(), f(f) {};
+            Midpoint(Func f) : Integrator(), f(f) {};
 
-            Midpoint(Func f, unsigned int nStep) : Integral(), f(f), nStep(nStep) {};
+            Midpoint(Func f, unsigned int nStep) : Integrator(), f(f), nStep(nStep) {};
 
             double Integrate(double a, double b) const override {
                 auto res = 0.0;
