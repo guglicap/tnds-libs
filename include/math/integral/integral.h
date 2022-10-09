@@ -1,4 +1,5 @@
 #pragma once
+#include <tuple>
 
 namespace math {
     inline namespace integral {
@@ -6,7 +7,7 @@ namespace math {
         public:
             Integrator() = default;
 
-            virtual double Integrate(double a, double b) const = 0;
+            virtual std::pair<double, double> Integrate(double a, double b) const = 0;
         };
     }
 }

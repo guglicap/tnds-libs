@@ -11,7 +11,7 @@ namespace math {
 
             Simpson(Func f, unsigned int N) : Integrator(), f(f), N(N) {};
 
-            double Integrate(const double a, const double b) const override {
+            std::pair<double, double> Integrate(const double a, const double b) const override {
                 const auto h = (b - a) / double(N);
                 auto res = 0.0;
                 for (int n = 0; n < N; n++) {
@@ -19,18 +19,12 @@ namespace math {
                     res += A * f(a + n * h);
                 }
                 res *= h / 3;
-                precision = h*h*h*h;
-                return res;
-            }
-
-            constexpr double Precision() const {
-                return precision;
+                return std::pair{res, h * h * h * h};
             }
 
         private:
             const Func f;
             const unsigned int N = 10;
-            mutable double precision = 0.0;
         };
     }
 }

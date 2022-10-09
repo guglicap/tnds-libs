@@ -1,6 +1,7 @@
 #pragma once
 
 #define INTEGRAL_MIDPOINT_DEFAULT_NSTEP 1000
+
 #include "math/integral/integral.h"
 
 namespace math {
@@ -10,25 +11,22 @@ namespace math {
         public:
             Midpoint(Func f) : Integrator(), f(f) {};
 
-            Midpoint(Func f, unsigned int nStep) : Integrator(), f(f), nStep(nStep) {};
+            Midpoint(Func f, unsigned int N) : Integrator(), f(f), N(N) {};
 
-            double Integrate(double a, double b) const override {
+            std::pair<double, double> Integrate(double a, double b) const override {
                 auto res = 0.0;
-                const auto step = (b - a) / double(nStep);
-                for (unsigned int i = 0; i < nStep; i++) {
-                    res += integrate(a + step * i, a + step * (i + 1));
+                const auto h = (b - a) / double(N);
+                for (unsigned int n = 0; n < N - 1; n++) {
+                    const auto xM = (a + n * h + (n + 1) * h) / 2;
+                    res += f(xM);
                 }
-                return res;
+                res *= h;
+                return std::pair{res, h * h};
             }
 
         private:
             const Func f;
-            const unsigned int nStep = INTEGRAL_MIDPOINT_DEFAULT_NSTEP;
-
-            constexpr double integrate(double a, double b) const {
-                const auto xM = (a + b) / 2;
-                return f(xM) * (b - a);
-            }
+            const unsigned int N = INTEGRAL_MIDPOINT_DEFAULT_NSTEP;
         };
     }
 }
