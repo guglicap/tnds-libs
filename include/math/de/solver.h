@@ -18,6 +18,15 @@ namespace math {
             Solver(Derivative f) : f(f) {};
 
             virtual State Evolve(State state) const = 0;
+
+            State EvolveFor(const double duration, State state) const {
+                const auto t0 = state.first;
+                auto &t = state.first;
+                while (t - t0 < duration) {
+                    state = Evolve(state);
+                }
+                return state;
+            }
         };
     }
 }
