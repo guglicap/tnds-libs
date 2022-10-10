@@ -9,14 +9,15 @@ namespace math {
         template<typename Domain>
         class Solver {
         protected:
-            typedef function<Domain(double, Domain)> EvolutionFunction;
-            const EvolutionFunction f = [](double, Domain v) { return v; };
+            typedef function<Domain(double, Domain)> Derivative;
+            typedef std::pair<double, Domain> State;
+            const Derivative f = [](double, Domain v) { return v; };
         public:
             Solver() = default;
 
-            Solver(EvolutionFunction f) : f(f) {};
+            Solver(Derivative f) : f(f) {};
 
-            virtual Domain Step(double t, Domain state) const = 0;
+            virtual State Evolve(State state) const = 0;
         };
     }
 }
