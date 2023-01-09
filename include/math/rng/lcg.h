@@ -1,6 +1,8 @@
+#pragma once
+
 namespace math
 {
-    inline namespace rng
+    namespace rng
     {
         class LinearCongruent
         {

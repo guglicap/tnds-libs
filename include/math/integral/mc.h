@@ -1,7 +1,7 @@
+#pragma once
+
 #include "integral.h"
 #include "math/rng/lcg.h"
-#include "chrono"
-#include "random"
 
 namespace math
 {

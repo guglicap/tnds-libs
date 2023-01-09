@@ -1,9 +1,11 @@
+#pragma once
+
 #include "lcg.h"
 #include "cmath"
 
 namespace math
 {
-    inline namespace rng
+    namespace rng
     {
         class Exponential
         {

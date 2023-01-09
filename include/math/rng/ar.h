@@ -1,22 +1,24 @@
+#pragma once
+
 #include "lcg.h"
 #include "functional"
 
 namespace math
 {
-    inline namespace rng
+    namespace rng
     {
+        template <typename Func>
         class AcceptReject
         {
         protected:
-            typedef std::function<double(double)> PDF;
-            PDF f;
+            Func f;
             double fMax;
             LinearCongruent rng;
 
         public:
-            AcceptReject(PDF f, double fMax, unsigned long seed) : rng{LinearCongruent{seed}},
-                                                                   f{f},
-                                                                   fMax{fMax} {};
+            AcceptReject(Func f, double fMax, unsigned long seed) : f{f},
+                                                                    fMax{fMax},
+                                                                    rng{LinearCongruent{seed}} {};
 
             auto NextRand(double xMin, double xMax)
             {
