@@ -1,7 +1,7 @@
 #pragma once
 
 #include "phys/vectorField.h"
-#include "phys/vector.h"
+#include "phys/vector3.h"
 #include "phys/em/constant.h"
 #include "phys/particle.h"
 

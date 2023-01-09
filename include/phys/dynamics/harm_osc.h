@@ -10,15 +10,5 @@ namespace phys {
                     v.Velocity(),
             };
         };
-
-        auto HarmOscForcedEvolution(double w2, double alpha, double wForce) {
-            return [w2, alpha, wForce](double t, PhaseSpaceVector v) {
-                return PhaseSpaceVector{
-                        // TODO: force term is an ugly hack for now
-                        -w2 * v.Position() - alpha * v.Velocity() + sin(wForce * t) * phys::vector3{1, 0, 0},
-                        v.Velocity(),
-                };
-            };
-        }
     }
 }

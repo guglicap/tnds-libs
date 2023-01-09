@@ -1,13 +1,18 @@
 #pragma once
 #include <tuple>
 
-namespace math {
-    inline namespace integral {
-        class Integrator {
+namespace math
+{
+    inline namespace integral
+    {
+        class Integrator
+        {
+        protected:
+            typedef std::pair<double, double> Result; // integral, precision
+
         public:
             Integrator() = default;
-
-            virtual std::pair<double, double> Integrate(double a, double b) const = 0;
+            virtual Result Integrate(double a, double b) = 0;
         };
     }
 }

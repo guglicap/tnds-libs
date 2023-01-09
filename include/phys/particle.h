@@ -1,7 +1,7 @@
 #pragma once
 
 #include <iostream>
-#include "phys/vector.h"
+#include "phys/vector3.h"
 #include "phys/em/constant.h"
 
 namespace phys {

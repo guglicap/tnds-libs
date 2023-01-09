@@ -1,6 +1,10 @@
 *.gch
 *.o
 *.x
+*.dat
+.idea/
 lib/
 bin/
-tools/L*
+tools/*
+.vscode/settings.json
+tools/Es10.0/gplot++.h

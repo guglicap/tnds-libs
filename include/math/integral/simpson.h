@@ -11,7 +11,7 @@ namespace math {
 
             Simpson(Func f, unsigned int N) : Integrator(), f(f), N(N) {};
 
-            std::pair<double, double> Integrate(const double a, const double b) const override {
+            Result Integrate(const double a, const double b) const override {
                 const auto h = (b - a) / double(N);
                 auto res = 0.0;
                 for (int n = 0; n < N; n++) {
