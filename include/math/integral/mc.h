@@ -2,6 +2,7 @@
 
 #include "integral.h"
 #include "math/rng/lcg.h"
+#include <cmath>
 
 namespace math
 {
@@ -14,17 +15,17 @@ namespace math
             const Func f;
             const double fMax;
             const unsigned int N = 1000;
-            LinearCongruent rng;
+            rng::LinearCongruent rng;
 
         public:
             MonteCarloHoM(Func f, double fMax, unsigned long seed) : f{f},
                                                                      fMax{fMax},
-                                                                     rng{LinearCongruent{seed}} {};
+                                                                     rng{rng::LinearCongruent{seed}} {};
 
             MonteCarloHoM(Func f, double fMax, unsigned long seed, unsigned int N) : f{f},
                                                                                      fMax{fMax},
                                                                                      N{N},
-                                                                                     rng{LinearCongruent{seed}} {};
+                                                                                     rng{rng::LinearCongruent{seed}} {};
 
             Result Integrate(double a, double b) override
             {
@@ -55,15 +56,15 @@ namespace math
         private:
             const Func f;
             const unsigned int N = 1000;
-            LinearCongruent rng;
+            rng::LinearCongruent rng;
 
         public:
             MonteCarloMean(Func f, unsigned long seed) : f{f},
-                                                         rng{LinearCongruent{seed}} {};
+                                                         rng{rng::LinearCongruent{seed}} {};
 
             MonteCarloMean(Func f, unsigned long seed, unsigned int N) : f{f},
                                                                          N{N},
-                                                                         rng{LinearCongruent{seed}} {};
+                                                                         rng{rng::LinearCongruent{seed}} {};
 
             Result Integrate(double a, double b) override
             {
