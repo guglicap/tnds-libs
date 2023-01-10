@@ -13,7 +13,7 @@ namespace math {
 
             Midpoint(Func f, unsigned int N) : Integrator(), f(f), N(N) {};
 
-            Result Integrate(double a, double b) const override {
+            Result Integrate(double a, double b) override {
                 auto res = 0.0;
                 const auto h = (b - a) / double(N);
                 for (unsigned int n = 0; n < N - 1; n++) {
@@ -21,7 +21,7 @@ namespace math {
                     res += f(xM);
                 }
                 res *= h;
-                return std::pair{res, h * h};
+                return {res, h * h};
             }
 
         private:
