@@ -27,6 +27,14 @@ namespace math
                 auto x = sqrt(-2 * log(1 - s)) * cos(2 * M_PI * t);
                 return x0 + x * sigma;
             };
+
+            auto NextRand(double x0, double sigma)
+            {
+                auto s = rng.NextDecimal();
+                auto t = rng.NextDecimal();
+                auto x = sqrt(-2 * log(1 - s)) * cos(2 * M_PI * t);
+                return x0 + x * sigma;
+            };
         };
     }
 }
