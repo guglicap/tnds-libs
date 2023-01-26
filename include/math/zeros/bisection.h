@@ -59,9 +59,9 @@ namespace math {
             }
 
         private:
-            const Func f;
-            const double prec = 1e-9;
-            const int maxIters = 100;
+            Func f;
+            double prec = 1e-9;
+            int maxIters = 100;
 
             bool rangeOk(double deltaX, double midX) const {
                 if (0.5 * deltaX < prec) return false;

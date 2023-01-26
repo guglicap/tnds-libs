@@ -1,5 +1,6 @@
 #pragma once
 #include <optional>
+#include <tuple>
 
 namespace math {
     inline namespace zeros {

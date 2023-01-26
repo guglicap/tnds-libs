@@ -10,9 +10,9 @@ namespace phys {
 
             constexpr cyl(double r, double theta, double z) : r(r), theta(theta), z(z) {};
 
-            const double r;
-            const double theta;
-            const double z;
+            double r;
+            double theta;
+            double z;
         };
 
         constexpr auto vecFromCyl(const cyl v) {

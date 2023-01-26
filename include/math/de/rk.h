@@ -7,10 +7,8 @@ namespace math {
         template<typename Domain>
         class RungeKuttaSolver : public Solver<Domain> {
         private:
-            const double h = 0.1;
+            double h = 0.1;
         public:
-            RungeKuttaSolver() = default;
-
             RungeKuttaSolver(const typename Solver<Domain>::Derivative f) : Solver<Domain>(f) {};
 
             RungeKuttaSolver(const typename Solver<Domain>::Derivative f, double step) : Solver<Domain>(f),

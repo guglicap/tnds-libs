@@ -35,8 +35,8 @@ namespace math {
             }
 
         private:
-            const Func f;
-            const double reqPrec = NAN;
+            Func f;
+            double reqPrec = NAN;
             unsigned int N = INTEGRAL_MIDPOINT_DEFAULT_NSTEP;
 
             Result integrate(double a, double b) {

@@ -10,9 +10,9 @@ namespace phys {
 
             constexpr sph(double r, double theta, double phi) : r(r), theta(theta), phi(phi) {};
 
-            const double r;
-            const double theta;
-            const double phi;
+            double r;
+            double theta;
+            double phi;
         };
 
         constexpr auto vecFromSph(const sph v) {

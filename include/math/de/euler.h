@@ -10,7 +10,7 @@ namespace math {
         class EulerSolver : public Solver<Domain> {
 
         private:
-            const double h = 1e-3;
+            double h = 1e-3;
 
         public:
             EulerSolver() = default;

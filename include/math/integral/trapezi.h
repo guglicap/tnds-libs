@@ -42,7 +42,7 @@ namespace math
             unsigned int N = 1;
             double m_I = NAN;
             double reqPrec = 0.0;
-            const Func f;
+            Func f;
         };
     }
 }

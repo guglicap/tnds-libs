@@ -23,8 +23,8 @@ namespace math {
             }
 
         private:
-            const Func f;
-            const unsigned int N = 10;
+            Func f;
+            unsigned int N = 10;
         };
     }
 }

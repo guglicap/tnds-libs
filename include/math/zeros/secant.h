@@ -60,10 +60,10 @@ namespace math {
             }
 
         private:
-            const Func f;
-            const double precision = 1e-9;
+            Func f;
+            double precision = 1e-9;
             mutable double prev;
-            const int maxIters = 100;
+            int maxIters = 100;
 
             bool precisionOk(double xZero) const {
                 auto zeroRange = std::abs(xZero - prev);

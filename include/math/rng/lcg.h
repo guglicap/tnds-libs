@@ -8,9 +8,9 @@ namespace math
         {
         private:
             unsigned long x_prev;
-            const unsigned long m = 1 << 31; // 2^31
-            const unsigned long a = 1664525;
-            const unsigned long c = 1013904223;
+            unsigned long m = 1 << 31; // 2^31
+            unsigned long a = 1664525;
+            unsigned long c = 1013904223;
 
         public:
             LinearCongruent(unsigned long seed) : x_prev(seed) {};

@@ -21,9 +21,9 @@ namespace phys {
         constexpr auto q() const { return m_q; }
 
     protected:
-        const double m_m = 0.0;
-        const double m_q = 0.0;
-        const phys::vector m_r = vector{0, 0, 0};
+        double m_m = 0.0;
+        double m_q = 0.0;
+        phys::vector m_r = vector{0, 0, 0};
     };
 
     std::ostream &operator<<(std::ostream &os, const particle p) {

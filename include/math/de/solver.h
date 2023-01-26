@@ -11,10 +11,8 @@ namespace math {
         protected:
             typedef function<Domain(double, Domain)> Derivative;
             typedef std::pair<double, Domain> State;
-            const Derivative f = [](double, Domain v) { return v; };
+            Derivative f;
         public:
-            Solver() = default;
-
             Solver(Derivative f) : f(f) {};
 
             virtual State Evolve(State state) const = 0;

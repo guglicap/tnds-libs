@@ -12,9 +12,9 @@ namespace math
         class MonteCarloHoM : public Integrator
         {
         private:
-            const Func f;
-            const double fMax;
-            const unsigned int N = 1000;
+            Func f;
+            double fMax;
+            unsigned int N = 1000;
             rng::LinearCongruent rng;
 
         public:
@@ -54,8 +54,8 @@ namespace math
         class MonteCarloMean : public Integrator
         {
         private:
-            const Func f;
-            const unsigned int N = 1000;
+            Func f;
+            unsigned int N = 1000;
             rng::LinearCongruent rng;
 
         public:
