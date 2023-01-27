@@ -15,7 +15,10 @@ namespace math
 
             Result Integrate(double a, double b) override
             {
-                m_I = integrate(a, b, N);
+                if (std::isnan(m_I))
+                {
+                    m_I = integrate(a, b, N);
+                }
                 for (;;)
                 {
                     auto I2 = integrate(a, b, N * 2);
@@ -39,12 +42,12 @@ namespace math
             {
                 auto I = 0.0;
                 auto h = (b - a) / N;
-                for (int i{1}; i <= N-1; i++)
+                for (int i{1}; i <= N - 1; i++)
                 {
                     I += f(a + i * h);
                 }
                 I += 0.5 * (f(a) + f(b));
-                return I*h;
+                return I * h;
             }
         };
     }
