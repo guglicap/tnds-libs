@@ -7,23 +7,22 @@ namespace math
     inline namespace integral
     {
         template <typename Func>
-        class Trapezi : public Integrator
+        class Trapezoidi : public Integrator
         {
         public:
-            Trapezi(Func f, double reqPrec) : f{f},
-                                              reqPrec{reqPrec} {};
+            Trapezoidi(Func f, double reqPrec) : f{f},
+                                                 reqPrec{reqPrec} {};
+
+            Trapezoidi(Func f, unsigned int N) : f{f}, N{N} {};
 
             Result Integrate(double a, double b) override
             {
-                if (std::isnan(m_I))
-                {
-                    m_I = integrate(a, b, N);
-                }
+                m_I = integrate(a, b, N);
                 for (;;)
                 {
                     auto I2 = integrate(a, b, N * 2);
                     auto error = 4.0 / 3.0 * std::abs(m_I - I2);
-                    if (error <= reqPrec)
+                    if (std::isnan(reqPrec) || error <= reqPrec)
                     {
                         return {m_I, error};
                     }
@@ -35,7 +34,7 @@ namespace math
         private:
             unsigned int N = 2;
             double m_I = NAN;
-            double reqPrec = 0.0;
+            double reqPrec = NAN;
             Func f;
 
             double integrate(double a, double b, unsigned int N)
