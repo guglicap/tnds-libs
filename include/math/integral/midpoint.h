@@ -3,6 +3,7 @@
 #define INTEGRAL_MIDPOINT_DEFAULT_NSTEP 2
 
 #include "math/integral/integral.h"
+#include <cmath> // for NAN
 
 namespace math {
     inline namespace integral {
