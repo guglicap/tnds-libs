@@ -10,39 +10,42 @@ namespace math
         class Trapezi : public Integrator
         {
         public:
-            Trapezi(Func f) : f{f} {};
             Trapezi(Func f, double reqPrec) : f{f},
                                               reqPrec{reqPrec} {};
 
             Result Integrate(double a, double b) override
             {
-                if (N == 1)
+                m_I = integrate(a, b, N);
+                for (;;)
                 {
-                    m_I = 0.5 * (f(b) + f(a)) * (b - a);
-                }
-                double prec;
-                do
-                {
-                    N *= 2;
-                    auto h = (b - a) / double(N);
-                    auto next_I = 0.0;
-                    for (int i{0}; i < N; i++)
+                    auto I2 = integrate(a, b, N * 2);
+                    auto error = 4.0 / 3.0 * std::abs(m_I - I2);
+                    if (error <= reqPrec)
                     {
-                        auto c = a + i * h;
-                        auto d = a + (i + 1) * h;
-                        next_I += 0.5 * (f(c) + f(d)) * (d - c);
+                        return {m_I, error};
                     }
-                    prec = next_I - m_I;
-                    m_I = next_I;
-                } while (prec >= reqPrec);
-                return {m_I, prec};
+                    m_I = I2;
+                    N *= 2;
+                }
             };
 
         private:
-            unsigned int N = 1;
+            unsigned int N = 2;
             double m_I = NAN;
             double reqPrec = 0.0;
-            const Func f;
+            Func f;
+
+            double integrate(double a, double b, unsigned int N)
+            {
+                auto I = 0.0;
+                auto h = (b - a) / N;
+                for (int i{1}; i <= N-1; i++)
+                {
+                    I += f(a + i * h);
+                }
+                I += 0.5 * (f(a) + f(b));
+                return I*h;
+            }
         };
     }
 }
