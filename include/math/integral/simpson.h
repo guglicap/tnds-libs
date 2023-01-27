@@ -15,7 +15,7 @@ namespace math {
                 const auto h = (b - a) / double(N);
                 auto res = 0.0;
                 for (int n = 0; n < N; n++) {
-                    const auto A = n == 0 ? 1 : (n % 2 == 0 ? 2 : 4);
+                    const auto A = (n == 0 || n == N-1) ? 1 : (n % 2 == 0 ? 2 : 4);
                     res += A * f(a + n * h);
                 }
                 res *= h / 3;
